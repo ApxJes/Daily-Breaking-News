@@ -26,6 +26,11 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         binding.rcvBreakingNews.adapter = newsAdapter
         binding.rcvBreakingNews.layoutManager = LinearLayoutManager(activity)
 
+        newsAdapter.setOnItemClickListener { article ->
+            val action = BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(article)
+            findNavController().navigate(action)
+        }
+
         newsViewModel.breakingNews.observe(viewLifecycleOwner) {respone ->
             when(respone) {
                 is Resource.Success -> {

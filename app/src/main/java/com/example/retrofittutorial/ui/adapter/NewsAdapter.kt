@@ -43,6 +43,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         )
     }
 
+    private var onItemClick: ((Article) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         articleImage = holder.itemView.findViewById(R.id.imvArticleImage)
@@ -58,10 +60,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             articleSource.text = article.source?.name
             articleDataAndTime.text = article.publishedAt
 
-            setOnItemClickListener {
-                onItemClick?.let {
-                    it(article)
-                }
+            setOnClickListener {
+                onItemClick?.let { it(article)}
             }
         }
     }
@@ -70,7 +70,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClick: ((Article) -> Unit)? = null
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClick = listener
     }
