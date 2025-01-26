@@ -33,6 +33,11 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         binding.rcvSearchNews.adapter = newsAdapter
         binding.rcvSearchNews.layoutManager = LinearLayoutManager(activity)
 
+        newsAdapter.setOnItemClickListener {
+            val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(it)
+            findNavController().navigate(action)
+        }
+
         var job: Job? = null
         binding.edtSearchNews.addTextChangedListener {
             job?.cancel()
