@@ -11,6 +11,7 @@ import com.example.retrofittutorial.databinding.FragmentArticleBinding
 import com.example.retrofittutorial.ui.adapter.NewsAdapter
 import com.example.retrofittutorial.ui.ui.NewsActivity
 import com.example.retrofittutorial.ui.viewModel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
     lateinit var binding: FragmentArticleBinding
@@ -28,6 +29,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
                 webViewClient = WebViewClient()
                 loadUrl(it)
             }
+        }
+
+        binding.floatingBtnSaveNews.setOnClickListener {
+            newsViewModel.saveNews(article)
+            Snackbar.make(
+                view,
+                "Successfully save",
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 }

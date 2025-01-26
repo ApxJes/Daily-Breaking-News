@@ -11,4 +11,9 @@
         android:title="Search News"
         android:icon="@drawable/ic_search_news"/>
 
+    <item
+        android:id="@+id/saveNewsFragment"
+        android:title="Save News"
+        android:icon="@drawable/ic_save"/>
+
 </menu>

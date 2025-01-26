@@ -36,4 +36,13 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/saveNewsFragment"
+        android:name="com.example.retrofittutorial.ui.ui.fragment.SaveNewsFragment"
+        android:label="fragment_save_news"
+        tools:layout="@layout/fragment_save_news" >
+        <action
+            android:id="@+id/action_saveNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
 </navigation>

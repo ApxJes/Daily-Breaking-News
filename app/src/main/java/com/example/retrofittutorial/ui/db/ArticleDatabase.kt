@@ -15,6 +15,8 @@ import com.example.retrofittutorial.ui.model.Article
 @TypeConverters(Converter::class)
 abstract class ArticleDatabase: RoomDatabase() {
 
+    abstract fun articleDao(): ArticleDao
+
     companion object {
         @Volatile
         private var instance: ArticleDatabase? = null
