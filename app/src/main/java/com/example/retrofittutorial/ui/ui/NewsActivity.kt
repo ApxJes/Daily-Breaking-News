@@ -3,6 +3,7 @@ package com.example.retrofittutorial.ui.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.retrofittutorial.R
@@ -18,8 +19,7 @@ class NewsActivity : AppCompatActivity() {
 
     private var _binding: ActivityNewsBinding? = null
     private val binding get() = _binding!!
-    lateinit var newsViewModel: NewsViewModel
-    private lateinit var newsAdapter: NewsAdapter
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
-        val newsViewModelFactory = NewsViewModelFactory(application, newsRepository)
-        newsViewModel = ViewModelProvider(this, newsViewModelFactory).get(NewsViewModel::class.java)
+        val viewModelFactory = NewsViewModelFactory(newsRepository, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController

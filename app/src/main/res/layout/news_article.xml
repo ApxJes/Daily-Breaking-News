@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="SOURCE"
-        android:textColor="@color/brown"
+        android:textColor="@color/design_default_color_error"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imvArticleImage" />
 
@@ -30,7 +30,6 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="TITLE"
-        android:textColor="@color/brown"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/imvArticleImage"
@@ -46,8 +45,6 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="DESCRIPTION"
-
-        android:textColor="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvArticleImage"
         app:layout_constraintTop_toBottomOf="@+id/txvArticleTitle" />
@@ -59,8 +56,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:text="DATE TIME"
-        android:textColor="@color/brown"
-
+        android:textColor="@color/design_default_color_error"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvArticleDescription" />

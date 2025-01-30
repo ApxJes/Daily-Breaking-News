@@ -4,13 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_design"
     tools:context=".ui.ui.fragment.SaveNewsFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txvFavoriteNews"
+        android:text="Favorite News"
+        android:textSize="25sp"
+        android:layout_marginStart="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvSaveNews"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rcvSaveNews"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvFavoriteNews" />
 
     <ProgressBar
         android:layout_width="wrap_content"

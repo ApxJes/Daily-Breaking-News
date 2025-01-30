@@ -1,6 +1,7 @@
 package com.example.retrofittutorial.ui.ui.fragment
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,40 +14,37 @@ import com.example.retrofittutorial.ui.viewModel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
-    private lateinit var binding: FragmentBreakingNewsBinding
-    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var binding: FragmentBreakingNewsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBreakingNewsBinding.bind(view)
-        newsViewModel = (activity as NewsActivity).newsViewModel
+        viewModel = (activity as NewsActivity).viewModel
+        setUpRecyclerView()
 
-        newsAdapter = NewsAdapter()
-        binding.rcvBreakingNews.adapter = newsAdapter
-        binding.rcvBreakingNews.layoutManager = LinearLayoutManager(activity)
-
-        newsAdapter.setOnItemClickListener { article ->
-            val action = BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(article)
+        newsAdapter.onItemClickListener {
+            val action = BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(it)
             findNavController().navigate(action)
         }
 
-        newsViewModel.breakingNews.observe(viewLifecycleOwner) {respone ->
-            when(respone) {
+        viewModel.headlineNews.observe(viewLifecycleOwner){response ->
+            when(response){
                 is Resource.Success -> {
                     hideProgressBar()
-                    respone.data?.let { resultResponse ->
+                    response.data?.let { resultResponse ->
                         newsAdapter.differ.submitList(resultResponse.articles)
                     }
                 }
 
                 is Resource.Error -> {
                     hideProgressBar()
-                    respone.data?.let { errorMessage ->
-                        Snackbar.make(
-                            view,
+                    response.data?.let { errorMessage ->
+                        Toast.makeText(
+                            activity,
                             "An error occur $errorMessage",
-                            Snackbar.LENGTH_SHORT
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
@@ -56,11 +54,19 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         }
     }
 
+    private fun setUpRecyclerView() {
+        newsAdapter = NewsAdapter()
+        binding.rcvBreakingNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
     private fun showProgressBar() {
         binding.paginationProgress.visibility = View.VISIBLE
     }
 
     private fun hideProgressBar() {
-        binding.paginationProgress.visibility = View.GONE
+        binding.paginationProgress.visibility = View.INVISIBLE
     }
 }

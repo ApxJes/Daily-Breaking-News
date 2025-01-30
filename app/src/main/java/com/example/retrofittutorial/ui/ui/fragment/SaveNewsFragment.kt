@@ -25,13 +25,13 @@ class SaveNewsFragment : Fragment(R.layout.fragment_save_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSaveNewsBinding.bind(view)
-        newsViewModel = (activity as NewsActivity).newsViewModel
+        newsViewModel = (activity as NewsActivity).viewModel
 
         newsAdapter = NewsAdapter()
         binding.rcvSaveNews.adapter = newsAdapter
         binding.rcvSaveNews.layoutManager = LinearLayoutManager(activity)
 
-        newsAdapter.setOnItemClickListener {
+        newsAdapter.onItemClickListener  {
             val action = SaveNewsFragmentDirections.actionSaveNewsFragmentToArticleFragment(it)
             findNavController().navigate(action)
         }

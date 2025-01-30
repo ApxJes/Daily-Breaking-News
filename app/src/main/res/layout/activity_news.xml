@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ui.NewsActivity"
-    android:background="@drawable/background_design">
-
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -36,6 +35,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/purpleBrown"/>
+/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

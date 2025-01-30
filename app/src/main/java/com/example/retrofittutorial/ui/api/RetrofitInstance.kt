@@ -18,13 +18,13 @@ class RetrofitInstance {
 
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build()
         }
 
-        val api: NewsAPI by lazy {
-            retrofit.create(NewsAPI::class.java)
+        val api: NewsApi by lazy {
+            retrofit.create(NewsApi::class.java)
         }
     }
 }

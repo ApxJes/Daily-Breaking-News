@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
-    <color name="black">#050440</color>
+    <color name="black">#000000</color>
     <color name="purple">#36123F</color>
     <color name="brown">#624343</color>
     <color name="gray">#CFE3F0</color>
@@ -11,4 +11,12 @@
     <color name="pink">#D180AC</color>
     <color name="pinkWhite">#BD99A2</color>
     <color name="whiteGreen">#D7E2B6</color>
+
+    <color name="navyBlue1">#032030</color>
+    <color name="navyBlue2">#022B42</color>
+    <color name="navyBlue3">#003554</color>
+    <color name="navyBlue4">#004D47</color>
+    <color name="navyBlue5">#006494</color>
+    <color name="navyBlue6">#006DA4</color>
+    <color name="whitGrey">#BCCCDC</color>
 </resources>

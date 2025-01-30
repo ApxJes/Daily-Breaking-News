@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.retrofittutorial.ui.repository.NewsRepository
 
 class NewsViewModelFactory(
-    val application: Application,
-    val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository,
+    private val application: Application
 ): ViewModelProvider.Factory {
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return NewsViewModel(application, newsRepository) as T
     }

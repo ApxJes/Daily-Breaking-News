@@ -4,27 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_design"
-    tools:context=".ui.ui.fragment.SearchNewsFragment">
+    tools:context=".ui.ui.fragment.SearchNewsFragment"
+    >
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchInputLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txvSearchNews"
+        android:text="Search News"
+        android:layout_marginStart="7dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtSearchNews"
-            android:textColor="@color/brown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:id="@+id/edtSearchNews"
+        android:drawableLeft="@drawable/ic_search_news"
+        android:background="@drawable/background_design"
+        android:hint="Search"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:textColor="@color/navyBlue3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvSearchNews"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvSearchNews"
@@ -34,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/edtSearchNews" />
 
     <ProgressBar
         android:id="@+id/paginationProgress"

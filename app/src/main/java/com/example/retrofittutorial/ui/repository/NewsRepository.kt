@@ -1,23 +1,24 @@
 package com.example.retrofittutorial.ui.repository
 
+import androidx.lifecycle.LiveData
 import com.example.retrofittutorial.ui.api.RetrofitInstance
 import com.example.retrofittutorial.ui.db.ArticleDatabase
 import com.example.retrofittutorial.ui.model.Article
+import com.example.retrofittutorial.ui.model.NewsResponse
+import retrofit2.Response
 
 class NewsRepository(
-    val articleDatabase: ArticleDatabase
+    private val  db: ArticleDatabase
 ) {
-    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
-        RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
+    suspend fun getHandleNews(countryCode: String, pageSize: Int): Response<NewsResponse> =
+        RetrofitInstance.api.getHeadlineNews(countryCode, pageSize)
 
-    suspend fun searchNews(searchQuery: String, pageNumber: Int) =
-        RetrofitInstance.api.searchNews(searchQuery, pageNumber)
+    suspend fun searchNews(searchQuery: String, pageSize: Int): Response<NewsResponse> =
+        RetrofitInstance.api.searchNews(searchQuery, pageSize)
 
-    suspend fun upsert(article: Article) =
-        articleDatabase.articleDao().upsert(article)
+    suspend fun saveNews(article: Article): Long = db.newsDao().upsert(article)
 
-    fun getSaveNews() = articleDatabase.articleDao().getAllData()
+    fun getSaveNews(): LiveData<List<Article>> = db.newsDao().getAllData()
 
-    suspend fun delete(article: Article) =
-        articleDatabase.articleDao().delete(article)
+    suspend fun deleteNews(article: Article) = db.newsDao().delete(article)
 }

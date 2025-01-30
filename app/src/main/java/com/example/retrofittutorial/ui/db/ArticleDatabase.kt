@@ -9,27 +9,27 @@ import com.example.retrofittutorial.ui.model.Article
 
 @Database(
     entities = [Article::class],
-    version = 2,
+    version = 1
 )
 
 @TypeConverters(Converter::class)
 abstract class ArticleDatabase: RoomDatabase() {
 
-    abstract fun articleDao(): ArticleDao
+    abstract fun newsDao(): NewsDao
 
     companion object {
         @Volatile
         private var instance: ArticleDatabase? = null
-        private val LOCK = Any()
+        private var LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK){
-            instance ?: createDatabase(context).also { instance = it}
+            instance ?: createDatabase(context).also { instance = it }
         }
 
         private fun createDatabase(context: Context) = Room.databaseBuilder(
-            context = context.applicationContext,
+            context.applicationContext,
             ArticleDatabase::class.java,
-            "article_db.db"
+            "news_db"
         ).build()
     }
 }
